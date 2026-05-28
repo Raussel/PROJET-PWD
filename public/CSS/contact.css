@@ -1,0 +1,103 @@
+/* Menu mobile — overlay plein écran */
+.nav-links {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0.3rem;
+}
+@media (max-width: 900px) {
+    .menu-toggle {
+        display: block !important;
+    }
+
+    .nav-links {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: rgba(62, 39, 35, 0.97);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1.5rem;
+        z-index: 999;
+        animation: fadeInMenu 0.3s ease;
+    }
+
+    .nav-links.active {
+        display: flex !important;
+    }
+
+    .nav-links li {
+        opacity: 1 !important;
+        transform: none !important;
+        animation: none !important;
+        width: 80%;
+        text-align: center;
+    }
+
+    .nav-links li a {
+        font-size: 1.3rem;
+        padding: 0.8rem 1.5rem;
+        display: block;
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        transition: background 0.2s;
+    }
+
+    .nav-links li a:hover,
+    .nav-links li a.active {
+        background: var(--primary-color);
+    }
+
+    /* Bouton fermer le menu */
+    .nav-close {
+        display: block !important;
+        position: absolute;
+        top: 1.5rem;
+        right: 1.5rem;
+        background: transparent;
+        border: none;
+        color: white;
+        font-size: 2rem;
+        cursor: pointer;
+        z-index: 1000;
+    }
+}
+
+@media (min-width: 901px) {
+    .menu-toggle,
+    .nav-close {
+        display: none !important;
+    }
+}
+
+@keyframes fadeInMenu {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.hero {
+    min-height: 60vh;
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+        url("https://picsum.photos/id/1080/2000/1200");
+    background-position: center;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+}
+
+.contact-form {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
