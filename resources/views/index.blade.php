@@ -26,7 +26,7 @@
                     <i class="fas fa-times"></i>
                 </button>
                 <li><a href="{{ route('accueil') }}" class="{{ request()->routeIs('accueil') ? 'active' : '' }}">Accueil</a></li>
-                <li><a href="{{ route('apropos') }}" class="{{ request()->routeIs('apropos') ? 'active' : '' }}">Apropos</a></li>
+                <li><a href="{{ route('apropos') }}" class="{{ request()->routeIs('apropos') ? 'active' : '' }}">À propos</a></li>
                 <li><a href="{{ route('avis') }}" class="{{ request()->routeIs('avis') ? 'active' : '' }}">Avis</a></li>
                 <li><a href="{{ route('connexion') }}" class="{{ request()->routeIs('connexion') ? 'active' : '' }}">Connexion/Inscription</a></li>
                 <li><a href="{{ route('contact') }}" class="{{ request()->routeIs('contact') ? 'active' : '' }}">Contact</a></li>
@@ -146,12 +146,12 @@
     {{-- FOOTER --}}
     <footer>
         <p>© {{ date('Y') }} Dschang Reserve - Tous droits réservés</p>
-        <p>Contact : 
+        <p>Contact : <i class="fas fa-envelope"></i>
             <a href="mailto:rousselvaldespounde@gmail.com" style="color:var(--accent)">
                 rousselvaldespounde@gmail.com
             </a>
         </p>
-        <p> Tel:
+        <p> Tel:   <i class="fas fa-phone"></i>
            <a href="tel:+237672407787">+237 672 407 787</a><br>
            <a href="tel:+237670140669">+237 670 140 669</a>
         </p>

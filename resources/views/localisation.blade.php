@@ -8,33 +8,28 @@
 
     <title>Localisation - Food Reserve</title>
 
-    {{-- Font Awesome --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-
-    {{-- Leaflet CSS --}}
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-
-    {{-- CSS Laravel --}}
     <link rel="stylesheet" href="{{ asset('CSS/App1.css') }}" />
     <link rel="stylesheet" href="{{ asset('CSS/localisation.css') }}" />
 </head>
 
 <body>
 
- {{-- HEADER / NAVIGATION --}}
+    {{-- HEADER / NAVIGATION --}}
     <header>
         <nav>
-            <div class="logo">🍽️Food Reserve</div>
+            <div class="logo">🍽️ Food Reserve</div>
 
             <ul class="nav-links" id="navMenu">
                 <button class="nav-close" onclick="toggleMenu()">
                     <i class="fas fa-times"></i>
                 </button>
-                <li><a href="{{ route('accueil') }}" class="{{ request()->routeIs('accueil') ? 'active' : '' }}">Accueil</a></li>
-                <li><a href="{{ route('apropos') }}" class="{{ request()->routeIs('apropos') ? 'active' : '' }}">Apropos</a></li>
-                <li><a href="{{ route('avis') }}" class="{{ request()->routeIs('avis') ? 'active' : '' }}">Avis</a></li>
-                <li><a href="{{ route('connexion') }}" class="{{ request()->routeIs('connexion') ? 'active' : '' }}">Connexion/Inscription</a></li>
-                <li><a href="{{ route('contact') }}" class="{{ request()->routeIs('contact') ? 'active' : '' }}">Contact</a></li>
+                <li><a href="{{ route('accueil') }}"      class="{{ request()->routeIs('accueil')      ? 'active' : '' }}">Accueil</a></li>
+                <li><a href="{{ route('apropos') }}"      class="{{ request()->routeIs('apropos')      ? 'active' : '' }}">À propos</a></li>
+                <li><a href="{{ route('avis') }}"         class="{{ request()->routeIs('avis')         ? 'active' : '' }}">Avis</a></li>
+                <li><a href="{{ route('connexion') }}"    class="{{ request()->routeIs('connexion')    ? 'active' : '' }}">Connexion/Inscription</a></li>
+                <li><a href="{{ route('contact') }}"      class="{{ request()->routeIs('contact')      ? 'active' : '' }}">Contact</a></li>
                 <li><a href="{{ route('localisation') }}" class="{{ request()->routeIs('localisation') ? 'active' : '' }}">Localisation</a></li>
             </ul>
 
@@ -44,61 +39,100 @@
         </nav>
     </header>
 
-{{-- HERO --}}
-<section class="hero">
-    <div class="hero-content" style="text-align:center;">
-        <h1>📍 Localisation des Restaurants</h1>
-        <p>Découvrez les meilleurs restaurants de Dschang autour de vous</p>
-    </div>
-</section>
+    {{-- HERO --}}
+    <section class="loc-hero">
+        <div class="loc-hero-content">
+            <span class="loc-badge">
+                <i class="fas fa-map-marker-alt"></i> Dschang, Cameroun
+            </span>
+            <h1>📍 Food Reserve Localisation </h1>
+            <p>Découvrez les meilleurs restaurants de Dschang autour de vous</p>
+        </div>
+    </section>
 
-{{-- MAP SECTION --}}
-<section style="padding: 60px 20px;">
+    {{-- SECTION CARTE --}}
+    <section class="loc-section">
 
-    <h2 style="text-align:center;">Carte interactive de Food Reserve</h2>
+        <div class="loc-container">
 
-    {{-- BUTTONS --}}
-    <div class="map-controls">
-        <button class="btn btn-primary" onclick="findNearest()">
-            ⭐ Plus proche
-        </button>
+            {{-- PANNEAU GAUCHE --}}
+            <div class="loc-panel">
 
-        <button class="btn btn-secondary" onclick="showAll()">
-            🍔 Tous les restaurants
-        </button>
+                <h3 class="loc-panel-title">
+                    <i class="fas fa-sliders-h"></i> Actions
+                </h3>
 
-        <button class="btn btn-primary" onclick="showPosition()">
-            📍 Ma position
-        </button>
-    </div>
+                {{-- BOUTONS --}}
+                <div class="map-controls">
+                    <button class="btn btn-nearest" onclick="findNearest()">
+                        <i class="fas fa-star"></i>
+                        <span>Plus Proche</span>
+                    </button>
+                    <button class="btn btn-position" onclick="showPosition()">
+                        <i class="fas fa-crosshairs"></i>
+                        <span>Ma Position</span>
+                    </button>
+                    <button class="btn btn-all" onclick="showAll()">
+                        <i class="fas fa-th-list"></i>
+                        <span>Tous les Restaurants</span>
+                    </button>
+                    <button class="btn btn-reset" onclick="resetMap()">
+                        <i class="fas fa-redo"></i>
+                        <span>Réinitialiser</span>
+                    </button>
+                </div>
 
-    {{-- MAP --}}
-    <div id="map"></div>
+                {{-- STATUT --}}
+                <div id="result" class="loc-result">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Cliquez sur un bouton pour commencer</span>
+                </div>
 
-    {{-- RESULT --}}
-    <div id="result"></div>
+                {{-- LISTE --}}
+                <div class="loc-list">
+                    <h3 class="loc-panel-title" style="margin-top:0;">
+                        <i class="fas fa-utensils"></i> Restaurants
+                    </h3>
+                    <ul id="listItems"></ul>
+                </div>
 
-</section>
+            </div>
 
-  {{-- FOOTER --}}
+            {{-- CARTE --}}
+            <div class="loc-map-wrapper">
+                <div id="map"></div>
+                <div class="map-overlay" id="mapOverlay">
+                    <div class="map-overlay-content">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <p>Cliquez sur un bouton<br>pour explorer la carte</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    {{-- FOOTER --}}
     <footer>
-        <p>© {{ date('Y') }} Dschang Reserve - Tous droits réservés</p>
-        <p>Contact : 
-            <a href="mailto:rousselvaldespounde@gmail.com" style="color:var(--accent)">
+        <p>© {{ date('Y') }} Food Reserve — Tous droits réservés</p>
+        <p> 
+             Tel: <i class="fas fa-envelope"></i>
+            <a href="mailto:rousselvaldespounde@gmail.com" style="color:var(--accent-color); margin-left:6px;">
                 rousselvaldespounde@gmail.com
             </a>
         </p>
-        <p> Tel:
-           <a href="tel:+237672407787">+237 672 407 787</a><br>
-           <a href="tel:+237670140669">+237 670 140 669</a>
+        <p>
+             Contact :<i class="fas fa-phone"></i>
+            <a href="tel:+237672407787" style="color:var(--accent-color); margin-left:6px;">+237 672 407 787</a>
+            &nbsp;|&nbsp;
+            <a href="tel:+237670140669" style="color:var(--accent-color);">+237 670 140 669</a>
         </p>
     </footer>
 
-
-{{-- SCRIPTS --}}
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-<script src="{{ asset('js/app.js')}}"></script>
-<script src="{{ asset('js/localisation.js') }}"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/localisation.js') }}"></script>
 
 </body>
 </html>
