@@ -20,7 +20,7 @@
                 <li><a href="{{ route('accueil') }}" class="{{ request()->routeIs('accueil') ? 'active' : '' }}">Accueil</a></li>
                 <li><a href="{{ route('apropos') }}" class="{{ request()->routeIs('apropos') ? 'active' : '' }}">À propos</a></li>
                 <li><a href="{{ route('avis') }}" class="{{ request()->routeIs('avis') ? 'active' : '' }}">Avis</a></li>
-                <li><a href="{{ route('connexion') }}" class="{{ request()->routeIs('connexion') ? 'active' : '' }}">Connexion</a></li>
+                <li><a href="{{ route('connexion') }}" class="{{ request()->routeIs('connexion') ? 'active' : '' }}">Connexion/Inscription</a></li>
                 <li><a href="{{ route('contact') }}" class="{{ request()->routeIs('contact') ? 'active' : '' }}">Contact</a></li>
                 <li><a href="{{ route('localisation') }}" class="{{ request()->routeIs('localisation') ? 'active' : '' }}">Localisation</a></li>
             </ul>
