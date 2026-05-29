@@ -14,7 +14,7 @@
     {{-- HEADER --}}
     <header>
         <nav>
-            <div class="logo">🍽️ Dschang Reserve</div>
+            <div class="logo">🍽️ Food Reserve</div>
             <ul class="nav-links" id="navMenu">
                 <button class="nav-close" onclick="toggleMenu()"><i class="fas fa-times"></i></button>
                 <li><a href="{{ route('accueil') }}" class="{{ request()->routeIs('accueil') ? 'active' : '' }}">Accueil</a></li>
